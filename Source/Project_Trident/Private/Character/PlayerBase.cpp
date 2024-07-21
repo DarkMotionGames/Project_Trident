@@ -14,8 +14,6 @@
 #include "Items/Item.h"
 #include "Weapons/WeaponBase.h"
 #include "Animation/AnimMontage.h"
-
-#include "Components/StaticMeshComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "HUD/MainHUD.h"
 #include "HUD/HUDOverlay.h"
