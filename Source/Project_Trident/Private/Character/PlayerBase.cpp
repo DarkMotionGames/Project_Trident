@@ -1,6 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
-
 #include "Character/PlayerBase.h"
 #include "Engine/LocalPlayer.h"
 #include "Camera/CameraComponent.h"
@@ -231,6 +228,10 @@ void APlayerBase::Interact()
 	AWeaponBase* OverlappingWeapon = Cast<AWeaponBase>(OverlappingItem);
 	if (OverlappingWeapon)
 	{
+		if (EquippedWeapon)
+		{
+			EquippedWeapon->Destroy();
+		}
 		OverlappingWeapon->Equip(GetMesh(), FName("RightHand_Socket"), this, this);
 		CharacterState = ECharacterState::ECS_EquippedOneHandedWeapon;
 		OverlappingItem = nullptr;

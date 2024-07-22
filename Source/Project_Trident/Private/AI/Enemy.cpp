@@ -1,9 +1,6 @@
 #include "AI/Enemy.h"
 #include "Components/SkeletalMeshComponent.h"
 #include "Animation/AnimMontage.h"
-#include "Kismet/KismetSystemLibrary.h"
-#include "Kismet/GameplayStatics.h"
-#include "Components/CapsuleComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "AIController.h"
 #include "HUD/WHealthBarComponent.h"
@@ -56,7 +53,7 @@ void AEnemy::SpawnDefaultWeapon()
 	if (World && WeaponClass)
 	{
 		AWeaponBase* DefaultWeapon = World->SpawnActor<AWeaponBase>(WeaponClass);
-		DefaultWeapon->Equip(GetMesh(), FName("hand_rWeapon"), this, this);
+		DefaultWeapon->Equip(GetMesh(), FName("WeaponSocket"), this, this);
 		EquippedWeapon = DefaultWeapon;
 	}
 }
@@ -157,6 +154,13 @@ void AEnemy::GetHit_Implementation(const FVector& ImpactPoint, AActor* Hitter)
 	ClearAttackTimer();
 	SetCollisionOnWeapon(ECollisionEnabled::NoCollision);
 	StopAttackMontage();
+	if (IsInsideAttackRadius())
+	{
+		if (!IsDead())
+		{
+			StartAttackTimer();
+		}
+	}
 }
 
 
@@ -201,7 +205,7 @@ void AEnemy::MoveToTarget(AActor* Target)
 	if (EnemyController == nullptr || Target == nullptr) return;
 	FAIMoveRequest MoveRequest;
 	MoveRequest.SetGoalActor(Target);
-	MoveRequest.SetAcceptanceRadius(50.f);
+	MoveRequest.SetAcceptanceRadius(AcceptanceCombatRadius);
 	EnemyController->MoveTo(MoveRequest);
 
 }

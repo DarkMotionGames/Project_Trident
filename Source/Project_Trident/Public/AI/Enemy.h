@@ -28,6 +28,9 @@ public:
 	//Interface
 	virtual void GetHit_Implementation(const FVector& ImpactPoint, AActor* Hitter) override;
 
+	UPROPERTY(EditAnywhere, Category = "Combat")
+	double AcceptanceCombatRadius = 50.f;
+
 private:
 	// AI Behavior
 
@@ -60,13 +63,15 @@ private:
 
 
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = "Combat")
 	double CombatRadius = 500.f;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = "Combat")
 	double AttackRadius = 120.f;
+
+
 	
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = "Combat")
 	double PatrolRadius = 200.f;
 
 
