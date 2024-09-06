@@ -142,7 +142,7 @@ protected:
 	void FinishEquipping();
 
 	UFUNCTION(BlueprintCallable)
-	void HitreactEnd();
+	void HitReactEnd();
 
 	//virtual void Die() override;
 

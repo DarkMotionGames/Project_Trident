@@ -370,7 +370,7 @@ void APlayerBase::FinishEquipping()
 	ActionState = EActionState::EAS_Unoccupied;
 }
 
-void APlayerBase::HitreactEnd()
+void APlayerBase::HitReactEnd()
 {
 	ActionState = EActionState::EAS_Unoccupied;
 }
